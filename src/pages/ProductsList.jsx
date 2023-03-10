@@ -1,11 +1,13 @@
 import React from "react";
 import { ProductCard } from "../components/ProductCard";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const ProductsList = ({ api }) => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const url = `https://fakestoreapi.com/${api}`;
+  console.log(url);
 
   async function fetchData() {
     const response = await fetch(url);
@@ -35,6 +37,24 @@ export const ProductsList = ({ api }) => {
     }
   };
 
+  const filterMaxFive = () => {
+    let sorted = data;
+    if (sorted.length > 0) {
+      let result = sorted.filter((item) => item.id <= 5);
+      setData(result);
+      console.log(result);
+    }
+  };
+
+  const filterMaxTen = () => {
+    let sorted = data;
+    if (sorted.length > 0) {
+      let result = sorted.filter((item) => item.id <= 10);
+      setData(result);
+      console.log(result);
+    }
+  };
+
   return (
     <section className="p-10 bg-light-mode dark:bg-dark-mode">
       <div className="flex justify-center flex-col">
@@ -61,6 +81,16 @@ export const ProductsList = ({ api }) => {
             <li>
               <button className="bg-blue-300 p-1" onClick={fetchData}>
                 Reset
+              </button>
+            </li>
+            <li>
+              <button className="bg-blue-300 p-1" onClick={filterMaxFive}>
+                Filter Max 5
+              </button>
+            </li>
+            <li>
+              <button className="bg-blue-300 p-1" onClick={filterMaxTen}>
+                Filter Max 10
               </button>
             </li>
           </ul>
