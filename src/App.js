@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { ProductItem } from "./pages/ProductItem";
 import { ProductsList } from "./pages/ProductsList";
+import { InvalidUrl } from "./components/InvalidUrl";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="" element={<ProductsList api="products" />} />
           <Route path="/products/:id" element={<ProductItem />} />
+          <Route path="*" element={<InvalidUrl />} />
         </Routes>
       </main>
       <Footer />

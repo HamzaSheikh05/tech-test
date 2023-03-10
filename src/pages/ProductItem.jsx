@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export const ProductItem = () => {
   const params = useParams();
   const [item, setItem] = useState([]);
@@ -18,24 +18,29 @@ export const ProductItem = () => {
 
   console.log(item);
   return (
-    <section className="bg-slate-700 dark:bg-black flex justify-center">
-      <div className="max-w-sm my-10 border-4 border-gray-400 rounded-t-lg">
+    <section className="bg-light-mode dark:bg-dark-mode flex flex-col items-center">
+      <div className="bg-transparent my-1 shadow-lg shadow-blue-800 dark:shadow-blue-500 border border-gray-500 max-w-md cursor-pointer group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 duration-500 rounded-lg">
         <img
-          className="rounded-t-lg w-full mb-5 h-80 object-fill"
           src={item.image}
-          alt="movie-images"
+          className="w-full h-[300px] object-fill rounded-t-lg"
+          alt=""
         />
-        <h5 className="text-3xl mb-3 underline font-medium tracking-tight font-burtons text-red-500 dark:text-blue-200">
+        <h3 className="text-3xl my-5 text-blue-400 dark:text-blue-200 font-burtons">
           {item.title}
-        </h5>
-
-        <p className="mb-3 font-medium tracking-normal font-serif text-zinc-200 dark:text-gray-50">
+        </h3>
+        <h3 className="text-xl px-4 text-blue-100 dark:text-gray-100 leading-normal my-3 font-serif">
           Price: {item.price}
-        </p>
-
-        <p className="mb-3 font-medium tracking-normal font-serif text-zinc-200 dark:text-gray-50">
+        </h3>
+        <h3 className="text-lg px-4 text-blue-100 dark:text-gray-100 leading-normal my-3 font-serif">
           {item.description}
-        </p>
+        </h3>
+      </div>
+      <div className="flex justify-center mt-10 items-center">
+        <Link to="/">
+          <button className="w-64 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            Redirect to Home
+          </button>
+        </Link>
       </div>
     </section>
   );
